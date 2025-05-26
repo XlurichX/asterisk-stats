@@ -1,3 +1,5 @@
+![Dashboard Preview](dashboard.png)
+
 # 📞 Asterisk Monitoring with Prometheus & Grafana
 
 A lightweight monitoring stack for Asterisk PBX using `prometheus`, `grafana`, and `asterisk_exporter`.
