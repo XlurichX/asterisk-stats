@@ -1,0 +1,385 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "Prometheus"},
+      "fieldConfig": {
+        "defaults": {
+          "unit": "megabytes",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "expr": "process_resident_memory_bytes / 1024 / 1024",
+          "legendFormat": "Resident",
+          "refId": "A"
+        }
+      ],
+      "title": "Resident Memory (MB)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "Prometheus"},
+      "fieldConfig": {
+        "defaults": {
+          "unit": "megabytes",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "expr": "process_virtual_memory_bytes / 1024 / 1024",
+          "legendFormat": "Virtual",
+          "refId": "A"
+        }
+      ],
+      "title": "Virtual Memory (MB)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "Prometheus"},
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "expr": "process_cpu_seconds_total",
+          "legendFormat": "CPU",
+          "refId": "A"
+        }
+      ],
+      "title": "Total CPU Time (s)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "Prometheus"},
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "expr": "python_gc_collections_total{generation=\"0\"}",
+          "legendFormat": "Gen 0 (short-lived)",
+          "refId": "A"
+        },
+        {
+          "expr": "python_gc_collections_total{generation=\"1\"}",
+          "legendFormat": "Gen 1 (medium-lived)",
+          "refId": "B"
+        },
+        {
+          "expr": "python_gc_collections_total{generation=\"2\"}",
+          "legendFormat": "Gen 2 (long-lived)",
+          "refId": "C"
+        }
+      ],
+      "title": "GC Collections (by Generation)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "Prometheus"},
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "expr": "process_open_fds",
+          "legendFormat": "Open FDs",
+          "refId": "A"
+        }
+      ],
+      "title": "Open File Descriptors",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "Prometheus"},
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 6,
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.0.0",
+      "targets": [
+        {
+          "expr": "asterisk_peer_status",
+          "legendFormat": "{{peer}} ({{proto}})",
+          "refId": "A"
+        }
+      ],
+      "title": "Asterisk Peer Status",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "Prometheus"},
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "expr": "asterisk_current_channels{channel_type=\"PJSIP\"}",
+          "legendFormat": "PJSIP",
+          "refId": "A"
+        },
+        {
+          "expr": "asterisk_current_channels{channel_type=\"IAX2\"}",
+          "legendFormat": "IAX2",
+          "refId": "B"
+        }
+      ],
+      "title": "Active Asterisk Channels",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "Prometheus"},
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "expr": "asterisk_channels_total{channel_type=\"PJSIP\"}",
+          "legendFormat": "PJSIP",
+          "refId": "A"
+        },
+        {
+          "expr": "asterisk_channels_total{channel_type=\"IAX2\"}",
+          "legendFormat": "IAX2",
+          "refId": "B"
+        }
+      ],
+      "title": "Total Created Channels",
+      "type": "timeseries"
+    }
+  ],
+  "schemaVersion": 40,
+  "style": "dark",
+  "tags": [
+    "voip",
+    "asterisk",
+    "python",
+    "gc"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Enhanced VoIP & Python Monitoring",
+  "uid": null,
+  "version": 1,
+  "weekStart": ""
+}
