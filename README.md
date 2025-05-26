@@ -17,7 +17,7 @@ A lightweight monitoring stack for Asterisk PBX using `prometheus`, `grafana`, a
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/yourname/asterisk-stats.git
+git clone https://github.com/XlurichX/asterisk-stats.git
 cd asterisk-stats
 ```
 
