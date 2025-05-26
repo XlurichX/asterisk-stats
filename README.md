@@ -17,10 +17,11 @@ A lightweight monitoring stack for Asterisk PBX using `prometheus`, `grafana`, a
 ```bash
 git clone https://github.com/yourname/asterisk-stats.git
 cd asterisk-stats
+```
 
 ### 2. Run the stack via Docker
 
-docker-compose up -d
+`docker-compose up -d`
 
 🧰 Files Included
 
@@ -32,6 +33,7 @@ asterisk_dashboard.json – Custom Grafana dashboard to import manually.
 
 README_dashboard.md - Designation of metric components
 
+
 ### 3. 🛠️ asterisk_exporter Setup
 
 Requirements:
@@ -40,7 +42,7 @@ python3-pip
 /etc/asterisk/manager.conf
 
 Example mananger.conf
-
+```bash
 [general]
 enabled = yes
 port = 5038
@@ -49,21 +51,22 @@ bindaddr = 127.0.0.1
 secret = gen_pass # openssl rand -base64 24
 read = system,call,log,verbose,command,agent,user,config,originate
 write = system,call,log,verbose,command,agent,user,config,originate
+```
 
-
-pip install asterisk-exporter
+`pip install asterisk-exporter`
 
 Example Run:
-
+```bash
 /usr/local/bin/asterisk_exporter start \
   --host 0.0.0.0 \
   --port 8088 \
   --user exporter \
   --password passwd_in_manager.conf&
+```
 
 ### 4. Launch of grafana
 
-Login into http:docker_ip:3000
+Login into http://docker_ip:3000
 admin:admin
 
 Go to Connections=>Data sources=>Prometheus (url - prometheus:9090)
