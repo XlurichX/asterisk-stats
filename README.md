@@ -107,7 +107,7 @@ Want more metrics? You can enhance the exporter to capture:
 - 🔄 Call direction (incoming/outgoing)  
 - 📡 Trunk usage  
 
-Check the [`asterisk_exporter`](https://github.com/wazo-pbx/asterisk_exporter) code or fork this project to add more features.
+Check the asterisk_exporter code or fork this project to add more features.
 
 ---
 
