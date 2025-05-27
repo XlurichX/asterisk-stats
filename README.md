@@ -1,79 +1,117 @@
 ![Dashboard Preview](dashboard.png)
 
-# 📞 Asterisk Monitoring with Prometheus & Grafana
+# 📞🔧 Asterisk Monitoring Stack — Prometheus + Grafana
 
-A lightweight monitoring stack for Asterisk PBX using `prometheus`, `grafana`, and `asterisk_exporter`.
+A lightweight monitoring stack for **Asterisk PBX**, powered by `Prometheus`, `Grafana`, and a Python-based `asterisk_exporter`.
 
-## 📦 Stack Components
+---
 
-- **Prometheus** – collects metrics from Asterisk and Python exporter.
-- **Grafana** – dashboards for visualizing performance and peer status.
-- **asterisk_exporter** – Python-based Prometheus exporter for Asterisk metrics.
+## 🧩 Stack Components
+
+- 🧠 **Prometheus** – collects metrics from Asterisk and Python exporter.
+- 📊 **Grafana** – dashboards for visualizing performance and peer status.
+- 🐍 **asterisk_exporter** – Python Prometheus exporter for Asterisk metrics.
 
 ---
 
 ## 🚀 Quick Start
 
-### 1. Clone the repo
+### 1. 📥 Clone the repository
 
 ```bash
 git clone https://github.com/XlurichX/asterisk-stats.git
 cd asterisk-stats
 ```
 
-### 2. Run the stack via Docker
+---
 
-`docker-compose up -d`
+### 2. 🐳 Start the stack with Docker
 
-🧰 Files Included
-
-docker-compose.yml – Launches Prometheus and Grafana.
-
-prometheus/prometheus.yml – Prometheus scrape config.
-
-asterisk_dashboard.json – Custom Grafana dashboard to import manually.
-
-README_dashboard.md - Designation of metric components
-
-
-### 3. 🛠️ asterisk_exporter Setup
-
-Requirements:
-python3.6+
-python3-pip
-/etc/asterisk/manager.conf
-
-Example mananger.conf
 ```bash
+docker-compose up -d
+```
+
+📁 **Included files**:
+
+- `docker-compose.yml` – Runs Prometheus and Grafana containers  
+- `prometheus/prometheus.yml` – Scrape config for Prometheus  
+- `asterisk_dashboard.json` – Prebuilt Grafana dashboard (manual import)  
+- `README_dashboard.md` – Description of dashboard metrics and layout  
+
+---
+
+### 3. ⚙️ Set up `asterisk_exporter`
+
+**Requirements**:
+
+- Python `3.6+`
+- `pip`
+- Asterisk with AMI access (`/etc/asterisk/manager.conf`)
+
+Example `manager.conf`:
+
+```ini
 [general]
 enabled = yes
 port = 5038
 bindaddr = 127.0.0.1
+
 [exporter]
-secret = gen_pass # openssl rand -base64 24
+secret = <strong_password>
 read = system,call,log,verbose,command,agent,user,config,originate
 write = system,call,log,verbose,command,agent,user,config,originate
 ```
 
-`pip install asterisk-exporter`
+🔧 Install and run exporter:
 
-Example Run:
 ```bash
-/usr/local/bin/asterisk_exporter start \
+pip install asterisk-exporter
+
+asterisk_exporter start \
   --host 0.0.0.0 \
   --port 8088 \
   --user exporter \
-  --password passwd_in_manager.conf&
+  --password <password_from_conf> &
 ```
 
-### 4. Launch of grafana
+---
 
-Login into http://docker_ip:3000
-admin:admin
+### 4. 📟 Access Grafana
 
-Go to Connections=>Data sources=>Prometheus (url - prometheus:9090)
+- Open: [http://localhost:3000](http://localhost:3000)
+- Login: `admin` / `admin`
 
-Next we can create a dashboard and import asterisk_dashboard.json
+🧩 Connect data source:
 
-All information on dashboard metrics is in the README_dashboard.md file
-If desired, you can improve the metrics by changing the source files asterisk-exporter
+1. Go to **Connections → Data sources**
+2. Select **Prometheus**
+3. Set URL to: `http://prometheus:9090`
+4. Save & Test
+
+📈 Import the dashboard:
+
+- Create a new dashboard
+- Click **Import**
+- Upload `asterisk_dashboard.json`
+
+📝 Panel and metric descriptions are available in [`README_dashboard.md`](./README_dashboard.md)
+
+---
+
+## 🛠️ Customize & Extend
+
+Want more metrics? You can enhance the exporter to capture:
+
+- 📞 Caller IDs  
+- 📊 Call statistics  
+- 🔄 Call direction (incoming/outgoing)  
+- 📡 Trunk usage  
+
+Check the [`asterisk_exporter`](https://github.com/wazo-pbx/asterisk_exporter) code or fork this project to add more features.
+
+---
+
+## ✅ Result
+
+A simple, effective way to monitor Asterisk with modern observability tools 🚀
+
